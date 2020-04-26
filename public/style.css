@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+margin: 0;
+padding: 0;
+}
+header{
+    background-color: rgb(0, 0, 0);
+  padding: 2.5%;
+
+}
+header  li{
+    display: inline-block;
+margin-left: 10px;
+margin-right: 10px;
+
+}
+nav  a{
+    text-decoration: none;
+ color: white;   
+}
+.nav-form{
+margin-top:5px;
+display:none;
+}
+.nav-navigation{
+    float: right;
+}
+.nav-button{
+    padding: 8px;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.753);
+    border-radius: 5%;
+    cursor: pointer;
+    box-shadow: none;
+    
+}
+.nav-button:hover{
+    background-color: black;
+    color: white;
+    border: solid 3px white;
+    transition: 0.5s;
+    
+}
+.nav-button:focus{
+outline: 0;
+box-shadow: none;
+}
