@@ -1,0 +1,491 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+margin: 0;
+padding: 0;
+}
+
+.loader_bg{
+    position: fixed;
+    z-index: 999999;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+}
+.loader{
+    border: 0 solid transparent;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: calc(50vh - 75px);
+    left:calc(50vw - 75px);
+}
+
+.loader:before {
+    animation-delay: .5s;
+}
+@keyframes loader{
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1);
+opacity: 0;
+    }
+}
+
+.normal-header{
+    background-color: black;
+position: fixed;
+color: white;
+padding: 2.8%;
+width: 95%;
+left: 0;
+top: 0;
+transition: 0.5s;  
+}
+.nav-header{
+font-size: 25px;
+font-family: normal;
+
+}
+
+.nav-item, .nav-header{
+    display: inline-block;
+margin-left: 7px;
+margin-right: 7px;
+
+}
+.mobile{
+  
+    list-style-type: none;
+    color: black;
+    background-color: white;
+    height: 100%;
+width: 100%;
+
+left: 0;
+top: 0;
+transition: 0.5s; 
+}
+#mobile-bar{
+    float: right;
+    justify-content: space-around;
+    margin: 5px;
+    display: none;
+}
+
+
+
+.mobile-nav-item{
+  display:none;
+    float: left;
+ padding: 8%;
+ margin-bottom: 5%;
+ font-size: 50px;
+    width:30%;
+    margin-right: 70%;
+ font-family: 'Bangers', cursive;
+
+}  
+nav  a{
+    text-decoration: none;
+ color: white;   
+}
+.nav-form{
+margin-top:5px;
+display:none;
+position: absolute;
+}
+.nav-navigation{
+    float: right;
+}
+.nav-button{
+    padding: 5px;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.753);
+    border-radius: 5%;
+    cursor: pointer;
+    box-shadow: none;
+    
+}
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+    background-color: black;
+  }
+  
+   .change .bar2 {
+    opacity: 0;
+  }
+   .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+background-color: black;
+}
+  
+button:hover{
+    background-color: black;
+    color: white;
+    border: solid 3px white;
+    transition: 0.5s;
+    
+}
+.nav-button:focus{
+outline: 0;
+box-shadow: none;
+}
+h3{
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Bangers', cursive;
+    margin-bottom: 10%;
+}
+.booking{
+   
+    
+    background: url('../images/wallpaper.JPEG') center center no-repeat;
+ padding: 240px;
+}
+
+.booking-h2{
+    font-family: 'Bangers', cursive;
+    text-align: center;
+color: rgb(255, 255, 255);
+margin-bottom: 30px;
+font-size: 75px;
+
+}
+.booking-form{
+  display: block;
+  text-align: center;
+
+}
+.booking-form-input{
+    padding: 10px;
+    margin-bottom: 10px;
+    }
+    .booking-form-button{
+        padding: 10px;
+        text-decoration: none;
+        border: none;
+background-color: white;
+color: rgba(0, 0, 0, 0.753);
+border-radius: 5%;
+cursor: pointer;
+box-shadow: none;
+    }
+.destination{
+    padding: 60px;
+background-color: black;
+color: white;
+}
+
+.destination-div{
+    display: block;
+
+}
+.destination-numbers{
+    display: inline;
+    padding: 10px;
+}
+.destination-label{
+    display: inline-block;
+    width: 26%;
+    
+    margin-bottom: 30px;
+    font-size: 40px;
+font-family: 'Bangers', cursive;
+text-align: center;
+
+}
+#destination-label-1{
+    float: left;
+   margin-right: 5.5%;
+}
+#destination-label-2{
+margin-right: 5.5%;
+   
+}
+#destination-labe-3{
+    float: right;
+}
+.destination-div-images{
+    padding: 10px;
+    position: static;
+}
+.destination img{
+    width: 20%;
+    height: auto;
+    display: inline;
+ cursor: pointer;
+
+}
+#destination-img-1{
+    float: left;
+    margin-right:16%;
+        }
+        .destination img:hover{
+filter: grayscale(100%);
+transition: 0.5s;
+        }
+    #destination-img-2{
+        
+        margin-right: 12%;
+    }
+    
+
+    .time{
+        padding:60px;
+        
+    }
+  
+    
+  
+.time-div-text{
+  
+    color: black;
+width:100%;
+margin-bottom: 10%;
+text-align: center;
+
+    font-family: 'Bangers', cursive;
+    margin-right: 15px;
+}
+.time-div-images{
+    display: inline;
+    position: static;
+   
+    border: space-around;
+    
+
+}
+.time-div-img{
+    width: 30%;
+    display: inline-block;
+    margin: 0 auto;
+    height: auto;
+    
+}
+.policy{
+    background-color: black;
+
+    color: white;
+font-family: 'Bangers', cursive;
+padding: 120px;
+padding-bottom: 0;
+}
+.policy-div{
+ 
+    text-align: center;
+    
+}
+.policy-text{
+    font-size: 600px;
+    width: 20%;
+    display: block;
+    margin-bottom: 50px;
+}
+.policy-div-icons{
+    font-size: 50px;
+display: block;
+margin-bottom: 50px;
+}
+.policy-image{
+    text-align: center;
+    width: 40%;
+    margin-top: 20px;
+    border-radius: 100%;
+}
+
+.kompanije{
+    padding: 60px;
+text-align: center;
+}
+.logo img{
+height: 120px;
+width: auto;
+justify-content: space-around;
+margin: 5px;
+}
+
+footer{
+padding: 100px; 
+text-decoration:
+ none;
+}
+
+
+.footer-header{
+    font-size: 50px;
+    font-family: 'Bangers', cursive;
+
+}
+.map{
+    width:540px;
+    height: 380px;
+}
+footer ul{
+    list-style: none;
+}
+.footer-link{
+    text-decoration: none;
+font-size: 45px;
+cursor: pointer;
+display: block;
+width: 50px;
+text-align: center;
+
+}
+#map-div{
+ margin-left: 100px;
+
+}
+.footer-section{
+    display: inline-block;
+    vertical-align: top;
+}
+.footer-link:hover{
+   background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+
+
+@media only screen and (max-width:750px)
+{
+    .nav-item{
+        display: none;
+    }
+ #mobile-bar{
+     display: block;
+ }   
+ .booking-h2{
+     font-size: 30px;
+ }
+    h3{
+        font-size: 25px;
+    }
+    
+    
+        .booking{
+            padding:150px;
+        }
+     
+    
+    .booking-form{
+        width:100%;
+        
+    }
+    .booking-form-input{
+        width: 50%;
+       
+        font-size: 10px;
+    }
+  
+    .booking-form-button{
+      width: 30%;
+    }
+  
+    
+        .destination-numbers{
+            display: block;
+            
+        }
+        .destination-label{
+            display:block;
+            width: 100%;
+            margin-bottom: 10px;
+           
+        
+        }
+        #destination-label-1{
+            margin-right: 0%;
+        }
+        #destination-label-2{
+        margin-right: 0%;
+           
+        }
+        #destination-labe-3{
+            float: left;
+        }
+        
+        .destination img{
+        width: 100%;
+            height: auto;
+            display: block;
+         cursor: pointer;
+        margin-bottom: 10px;
+        }
+        #destination-img-1{
+            float: left;
+            margin-right:0;
+                }
+                #destination-img-2{
+                
+                margin-right: 0;
+            }
+            
+               .logo img{
+                height: 45px;
+            }
+            .policy{
+                padding: 95px;
+            }
+        
+    
+}
+@media only screen and (max-width:1030px)
+{
+    .footer-section{
+        display: block;
+
+    }
+   #map-div{
+    margin-left:0;
+}
+}
+@media only screen and (max-width:450px)
+{
+    .booking-form-button{
+        width: 50%;
+    }
+    .booking-form-input{
+        width: 100%;
+    }
+    .policy-image{
+        width: 80%;
+    }
+    .login-h2{
+        font-size: 250%;
+    }
+    .register-h2{
+        font-size: 250%;
+    }
+    .map{
+        width: 100%;
+        height: auto;
+    }
+    #map-div{
+        width: 100%;
+    }
+}

@@ -1,6 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/e9b049ff8c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="about_us.css">
+</head>
+<body>
+<header class="normal-header">
+  <nav class="main-nav">
+   <ul class="nav-list">
+       <section class="nav-navigation">
+           <li class="nav-item"><button class="nav-button" id="log-in" onclick="location.href='log_in.html';">Prijava</button></li>
+           <li class="nav-item"><button class="nav-button" id="register" onclick="location.href='register.html';">Registracija</button></li>
+<li class="nav-item"><a href="about_us.html">About us</a></li>
+         </section>
+      
+         <div id="mobileid" class="mobil">
+           <li  id="mobile-bar"><div class="cross"  onclick="menuBarClick(this)"><div class="bar1"></div>
+               <div class="bar2"></div>
+               <div class="bar3"></div>
+               </div>
+           </li>     
+           <li class="nav-header"><h3 class="nav-header"><a href="index.html">Car Rental</a></h3></li>
+      
+     <li class="mobile-nav-item" onclick ="location.href = 'about_us.html';">About us</li>
+           <li class="mobile-nav-item" onclick = "location.href = 'log_in.html';">Prijava</li>
+           <li class="mobile-nav-item" onclick="location.href='register.html';">Registracija</li>
+       
+      </div>
+      </ul>
+      </nav>
+      </header>
 <div class="about-section">
-  <h1>About Us Page</h1>
-  <p>Dobro dosli na about us stranicu. Ovde cete se upoznati sa ljudima koji vode ovu firmu.</p>
+  <h1>O nama</h1>
+  <div class="posta">
+<h2>Posaljite nam poruku</h2>
+<form class="email">
+  <input type="text" class="email-input" placeholder="Name...">
+<input type="email" class="email-input" placeholder="Email...">
+<input type="text" class="email-input" placeholder="Subject...">
+<textarea class="textarea-email"></textarea> 
+</form>
+</div>
   <p>Ukoliko imate neku zalbu, neki predlog ili ste zainteresovani za saradnju mozete se obratiti jednom od glavnih clanova ciji se podaci nalaze u nastavku.</p>
 </div>
 
@@ -48,3 +91,26 @@
     </div>
   </div>
 </div>
+<footer>
+  <div class="footer-section">
+  <div class="footer-div">
+<div class="footer-header"><h6>Car Rental<h6></div>
+<p>Kompanija osnovana u Novom Sadu</p>
+  </div>
+  <div class="footer-div" id="links">
+  <div class="footer-header"><h6>Posetite nas</h6></div>
+      <ul class="footer-links">
+<li class="footer-link"><i  class="fab fa-facebook-f"></i></li>
+<li class="footer-link"><i class="fab fa-instagram"></i></li>
+<li class="footer-link"><i class="fab fa-linkedin-in"></i></li>
+  </ul>    
+  </div>
+</div>
+  <div id="map-div"class="footer-section"><div class="footer-header"><h6>Lokacije</h6></div>
+  <iframe src="https://www.google.com/maps/d/embed?mid=1Vlcd0Utav-XE1WDTN5oWMht2bvpXUFX8" class="map"></iframe>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

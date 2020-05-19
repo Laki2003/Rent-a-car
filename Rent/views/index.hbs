@@ -1,0 +1,92 @@
+
+    {{> header}}
+        <section class="booking">
+            <h2 class="booking-h2">Rentiraj automobil i uzivaj u voznji</h2>
+            <form class="booking-form" method="GET"  action='/search'>
+                <select name="location">
+                    {{# each locations }}
+                    <option value="{{this.grad}}">{{this.grad}}</option>
+                    {{/each}}
+                    </select>
+                <input type="date" name="from"  class="booking-form-input" placeholder="Od">
+                <input type="date" name="to" class="booking-form-input" placeholder="Do">
+                <input type="text" name="people" class="booking-form-input" placeholder="People">
+                <button class="booking-form-button" type="submit"><span><i class="fas fa-search"></i></span></button>
+            </form>
+        </section>
+        <section class="destination">
+            <h3 class="destination-h3">Istrazi lokalna mesta autom</h3>
+            
+<div class="destination-div">
+    <div class="destination-numbers">
+      <div class="destination-label" id="destination-label-1"><h6>Lokacije</h6> <h5>0</h5></div>
+      <div class="destination-label" id="destination-label-2"><h6>Vozila</h6> <h5>0</h5></div>
+      <div class="destination-label" id="destination-label-3"><h6>Bukiranja</h6> <h5>0</h5></div>
+        
+    </div>
+    <div class="destination-div-images">
+    <img id="destination-img-1" src="images/AO9T8809.jpg">
+    <img id="destination-img-2"src="images/KlMcaRKsge.jpg">
+    <img id="destination-img-3"src="images/Should-I-Rent-a-Car-or-use-Taxi.jpeg">
+</div>
+</div>
+        </section>
+        <section class="time">
+        <h3 class="time-h3">Pratimo dostignuca u automobilskoj industriji</h3>
+    <div class="time-div">
+        <div class="time-div-text">
+        <p>Uvek se trudimo da na raspolaganju imamo i najnovije automobile, ali isto tako volimo da pruzimo sansu i onim najstarijim</p>
+</div>
+<div class="time-div-images">    
+<img class="time-div-img" src="images/преузимање.png" >
+<img class="time-div-img" src="images/right-arrow.png">
+<img class="time-div-img" src="images/bugatti-la-voiture-noire.jpg" >
+</div>       
+</div>
+        </section>
+        <section class="kompanije">
+            <h3>Kompanije sa kojima saradjujemo</h3>
+            <div class="logo">
+                <img src="images/ford_logo.png">
+                <img src="images/Volkswagen_logo_2019.png">
+                <img src="images/volvo-logo.jpg">
+                <img src="images/Alfa-Romeo-logo.png">
+                <img src="images/bmw_logo.jpg">
+                <img src="images/Chevrolet-logo-2004-1920x1080.jpg">
+                <img src="images/fiat.jpg">
+               <img src="images/hyundai.jpg">
+                <img src="images/Peugeot_logo.svg.png">
+                <img src="images/Toyota-logo.jpg">
+                <img src="images/skoda.png">
+                <img src="images/renault_2015_vertical.png">
+                <img src="images/KIA_motors.png">
+                <img src="images/jaguar-logo-DFCA354A04-seeklogo.com.png">
+                <img src="images/Citroen-logo-300x225.png">
+                            </div>
+        </section>
+        <section class="policy">
+<h3>Nema potrebe za depozitom dovoljna su odgovarajuca dokumenta</h3>
+<div class="policy-div">
+<span class="policy-div-icons"><i class="far fa-address-card"></i>  <i class="fas fa-plus"></i>  <i class="fas fa-scroll"></i> = <i class="fas fa-car"></i></span>
+<p id="policy-text">Ukoliko se nesto desi automobilu tokom voznje sve troskove ce snositi nasa i vasa osiguranja. Ukoliko bude bilo dodatnih troskova razmatra se krivac.</p>
+<img class="policy-image" src="images/istockphoto-1166566396-1024x1024.jpg">
+</section>
+<footer>
+    <div class="footer-section">
+    <div class="footer-div">
+  <div class="footer-header"><h6>Car Rental<h6></div>
+<p>Kompanija osnovana u Novom Sadu</p>
+    </div>
+    <div class="footer-div" id="links">
+    <div class="footer-header"><h6>Posetite nas</h6></div>
+        <ul class="footer-links">
+<li class="footer-link"><i  class="fab fa-facebook-f"></i></li>
+<li class="footer-link"><i class="fab fa-instagram"></i></li>
+<li class="footer-link"><i class="fab fa-linkedin-in"></i></li>
+    </ul>    
+    </div>
+</div>
+    <div id="map-div"class="footer-section"><div class="footer-header"><h6>Lokacije</h6></div>
+    <iframe src="https://www.google.com/maps/d/embed?mid=1Vlcd0Utav-XE1WDTN5oWMht2bvpXUFX8" class="map"></iframe>
+    </div>
+</footer>

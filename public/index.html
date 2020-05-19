@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/e9b049ff8c.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
 
     </head>
     <body>
-        <header>
+        <header class="normal-header">
                <nav class="main-nav">
                 <ul class="nav-list">
-                    <li class="nav-item"><h3 class="nav-header"><a href="index.html">Car Rental</a></h3></li>
                     <section class="nav-navigation">
-                        <li class="nav-item"><button class="nav-button" id="log-in">Log In</button></li>
-                        <li class="nav-item"><button class="nav-button" id="register">Register</button></li>
+                        <li class="nav-item"><button class="nav-button" id="log-in" onclick="location.href='log_in.html';">Prijava</button></li>
+                        <li class="nav-item"><button class="nav-button" id="register" onclick="location.href='register.html';">Registracija</button></li>
         <li class="nav-item"><a href="about_us.html">About us</a></li>
-        </section>
+                      </section>
+                   
+                      <div id="mobileid" class="mobil">
+                        <li  id="mobile-bar"><div class="cross"  onclick="menuBarClick(this)"><div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                            </div>
+                        </li>     
+                        <li class="nav-header"><h3 class="nav-header"><a href="index.html">Car Rental</a></h3></li>
+                   
+                  <li class="mobile-nav-item" onclick ="location.href = 'about_us.html';">About us</li>
+                        <li class="mobile-nav-item" onclick = "location.href = 'log_in.html';">Prijava</li>
+                        <li class="mobile-nav-item" onclick="location.href='register.html';">Registracija</li>
+                    
+                   </div>
+
+                  
+        
+        
                     <form class="nav-form">
                     <li class="nav-item"><input class="nav-form-input" type="text" placeholder="Location"></li>
                     <li class="nav-item"><input class="nav-form-input" type="date" placeholder="Date()"></li>
                     <li class="nav-item"><input class="nav-form-input" type="number" placeholder="People" max="16"></li>
                 <li class="nav-item"><button   class="nav-form-button" type="submit"><span><i class="fas fa-search"></i></span></button></li>
+                
+                
                 </form>
             
             </ul>
@@ -40,8 +61,8 @@
 <div class="destination-div">
     <div class="destination-numbers">
       <div class="destination-label" id="destination-label-1"><h6>Lokacije</h6> <h5>0</h5></div>
-      <div class="destination-label"><h6>Vozila</h6> <h5>0</h5></div>
-      <div class="destination-label" id="destination-label-2"><h6>Bukiranja</h6> <h5>0</h5></div>
+      <div class="destination-label" id="destination-label-2"><h6>Vozila</h6> <h5>0</h5></div>
+      <div class="destination-label" id="destination-label-3"><h6>Bukiranja</h6> <h5>0</h5></div>
         
     </div>
     <div class="destination-div-images">
@@ -92,18 +113,25 @@
 <img class="policy-image" src="img/istockphoto-1166566396-1024x1024.jpg">
 </section>
 <footer>
+    <div class="footer-section">
     <div class="footer-div">
-    <h6 class="footer-header">Car Rental<h6>
+  <div class="footer-header"><h6>Car Rental<h6></div>
 <p>Kompanija osnovana u Novom Sadu</p>
     </div>
-    <div class="footer-div">
-    <h6 class="footer-header">Posetite nas</h6>
+    <div class="footer-div" id="links">
+    <div class="footer-header"><h6>Posetite nas</h6></div>
         <ul class="footer-links">
-<li class="footer-link"><i class="fab fa-facebook-square"></i></li>
-<li class="footer-link"><i class="fab fa-instagram-square"></i></li>
-<li class="footer-link"><i class="fab fa-linkedin"></i></li>
+<li class="footer-link"><i  class="fab fa-facebook-f"></i></li>
+<li class="footer-link"><i class="fab fa-instagram"></i></li>
+<li class="footer-link"><i class="fab fa-linkedin-in"></i></li>
     </ul>    
     </div>
+</div>
+    <div id="map-div"class="footer-section"><div class="footer-header"><h6>Lokacije</h6></div>
+    <iframe src="https://www.google.com/maps/d/embed?mid=1Vlcd0Utav-XE1WDTN5oWMht2bvpXUFX8" class="map"></iframe>
+    </div>
 </footer>
+
+<script src="app.js"></script>
     </body>
 </html>

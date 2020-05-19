@@ -1,0 +1,48 @@
+ <header class="normal-header">
+               <nav class="main-nav">
+                <ul class="nav-list">
+                    <section class="nav-navigation">
+                        {{# if login}}
+                          {{# if admin}}
+                          <li class="nav-item"><button class="nav-button" onclick="location.href='/users/managing';">Kontrolna tabla</button></li>
+                          {{/if}}
+                       <li class="nav-item"><button class="nav-button" id="log-in" onclick="location.href='/users/profile';" >Moj Profil</button></li>
+                        <li class="nav-item"><button class="nav-button" id="register" onclick="location.href='/users/logout';">Odjavi se</button></li>
+        <li class="nav-item"><a href="about_us.html">About us</a></li>
+                        {{else}}
+                         <li class="nav-item"><button class="nav-button" id="log-in" onclick="location.href='/users/login';">Prijava</button></li>
+                        <li class="nav-item"><button class="nav-button" id="register" onclick="location.href='/users/register';">Registracija</button></li>
+        <li class="nav-item"><a href="about_us.html">About us</a></li>
+                        {{/if}}
+                                            </section>
+                   
+                      <div id="mobileid" class="mobil">
+                        <li  id="mobile-bar"><div class="cross"  onclick="menuBarClick(this)"><div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                            </div>
+                        </li>     
+                        <li class="nav-header"><h3 class="nav-header"><a href="index.html">Car Rental</a></h3></li>
+                   {{# if login}}
+
+<li class="mobile-nav-item" onclick ="location.href = 'about_us.html';">About us</li>
+                     {{# if admin}}
+                            <li class="mobile-nav-item" onclick="location.href='/users/managing';">Kontrol</li>
+                            {{/if}}
+                        <li class="mobile-nav-item" onclick = "location.href = '/users/profile';">Moj Profil</li>
+                        <li class="mobile-nav-item" onclick="location.href='/users/logout';">Odjavi se</li>
+                   {{else}}
+                   <li class="mobile-nav-item" onclick ="location.href = 'about_us.html';">About us</li>
+                        <li class="mobile-nav-item" onclick = "location.href = '/users/login';">Prijava</li>
+                        <li class="mobile-nav-item" onclick="location.href='/users/register';">Registracija</li>
+                   {{/if}}
+    
+                    
+                   </div>
+
+                    
+        
+                 
+            </ul>
+            </nav>
+        </header>
