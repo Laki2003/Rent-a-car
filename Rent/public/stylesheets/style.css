@@ -369,7 +369,83 @@ text-align: center;
     transition: 0.5s;
 }
 
+.log-in{
+    background : url('../images/123993.jpg') no-repeat;
+    overflow-x: hidden;
+}
+.log-header{
+   
+    padding: 10px;
 
+    display: block;
+width: 20%;
+background-color: black;
+height: 5%;    
+}
+.log-header h2 a{
+    top: 20%;
+}
+.log{
+    padding: 20px;
+ margin-top: 75px;
+    text-align: center;
+    background: rgba(225,225,225,.30);
+    width: 70%;
+    left: 15%;
+    right: 15%;
+    position: absolute;
+
+}
+.login-form{
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+}
+.login-form-input{
+    display: block;
+    width: 100%;
+    border: none;
+  background-color: transparent;
+    color: white;
+    margin-bottom: 5%;
+    font-size: 20px;
+    border-bottom: 1px solid rgba(225,225,225,0.5);
+}
+
+.login-form-input:focus{
+    outline: none;
+}
+.login-form-button{
+    padding: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.753);
+    border-radius: 5%;
+    cursor: pointer;
+    box-shadow: none;
+}
+.login-h2{
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-size: 120px;
+    margin-bottom: 55px;
+}
+.register-h2{
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-size: 100px;
+    margin-bottom: 55px;
+}
+    .log-header a{
+        text-decoration: none;
+        color: white;
+      
+    }
+    .login-tekst{
+        color: white;
+    }
 
 @media only screen and (max-width:750px)
 {

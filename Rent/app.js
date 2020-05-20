@@ -18,7 +18,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 const db = require('./config/keys').MongoURI;
 mongoose.connect(db, {useNewUrlParser: true}).then(()=> console.log('Connected')).catch(err=>console.log(err));
-require('./config/passport');
+
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
