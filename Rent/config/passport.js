@@ -66,9 +66,32 @@ Korisnik.findOne({$or: [{'email': email}, {'username': username}]}, function(err
         if(err){
             return done(err);
         }
-     
+        req.session.admin = newKorisnik.admin;
+
         return done(null, newKorisnik);
     });
 });
 }));
 
+passport.use('local.login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function(req, email, password, done){
+Korisnik.findOne({'email':email}, function(err, korisnik){
+    if(err)
+    {
+        return done(err);
+    }
+    if(!korisnik)
+    {
+return done(null, false, {message: 'Korisnik sa ovom email adresom ne postoji!'});
+    }
+    if(!korisnik.validPassword(password)){
+return done(null, false, {message: 'Pogresna sifra!'});
+    }
+    req.session
+    req.session.admin = korisnik.admin;
+    return done(null, korisnik);
+})
+}));
