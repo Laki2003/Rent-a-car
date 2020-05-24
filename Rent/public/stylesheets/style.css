@@ -446,6 +446,19 @@ height: 5%;
     .login-tekst{
         color: white;
     }
+    .upozorenje{
+        display: block;
+        text-align: center;
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        
+    }
 
 @media only screen and (max-width:750px)
 {
