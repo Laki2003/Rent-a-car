@@ -1,16 +1,31 @@
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js'></script>
     {{> header}}
+    
         <section class="booking">
+            {{# if Greska}}
+<div class="upozorenje">
+    {{# each Greska}}
+    <p>{{this.message}}</p>
+    {{/each}}
+</div>           
+{{/if}}
+{{# if success}}
+<div class='success'>
+    {{# each success}}
+    <p>{{this.message}}</p>
+    {{/each}}
+</div>
+{{/if}}
             <h2 class="booking-h2">Rentiraj automobil i uzivaj u voznji</h2>
             <form class="booking-form" method="GET"  action='/search'>
-                <select name="location">
-                    {{# each locations }}
-                    <option value="{{this.grad}}">{{this.grad}}</option>
-                    {{/each}}
-                    </select>
-                <input type="date" name="from"  class="booking-form-input" placeholder="Od">
-                <input type="date" name="to" class="booking-form-input" placeholder="Do">
+               <input type="text" placeholder="Lokacija" class="booking-form-input" name="location">
+                <input type="date" name="from" id="from"  class="booking-form-input" required>
+                <input type="date" name="to" id="to" class="booking-form-input" required>
                 <input type="text" name="people" class="booking-form-input" placeholder="People">
+                <input type="hidden" name="marka">
+                <input type="hidden" name="cenaod">
+                <input type="hidden" name="cenado">
                 <button class="booking-form-button" type="submit"><span><i class="fas fa-search"></i></span></button>
             </form>
         </section>
@@ -19,9 +34,9 @@
             
 <div class="destination-div">
     <div class="destination-numbers">
-      <div class="destination-label" id="destination-label-1"><h6>Lokacije</h6> <h5>0</h5></div>
-      <div class="destination-label" id="destination-label-2"><h6>Vozila</h6> <h5>0</h5></div>
-      <div class="destination-label" id="destination-label-3"><h6>Bukiranja</h6> <h5>0</h5></div>
+      <div class="destination-label" id="destination-label-1"><h6>Lokacije</h6> <h5 class="num">{{lokacija}}</h5></div>
+      <div class="destination-label" id="destination-label-2"><h6>Vozila</h6> <h5 class="num">{{auto}}</h5></div>
+      <div class="destination-label" id="destination-label-3"><h6>Bukiranja</h6> <h5 class="num">{{booking}}</h5></div>
         
     </div>
     <div class="destination-div-images">
@@ -90,3 +105,7 @@
     <iframe src="https://www.google.com/maps/d/embed?mid=1Vlcd0Utav-XE1WDTN5oWMht2bvpXUFX8" class="map"></iframe>
     </div>
 </footer>
+
+<script type="text/javascript">
+$('.num').counterUp({delay:10, time:1000})
+</script>
