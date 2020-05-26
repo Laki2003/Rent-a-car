@@ -126,5 +126,58 @@ db.close();
 }
 })
 
+router.get('/check', async function(req, res, next){
+  const {from, to, carid, carprice} = req.query;
+  var date1 = new Date(from);
+  var date2 = new Date(to);
+  var number = date2.getTime() - date1.getTime();
+  var today = new Date();
+  let errors = [];
+  if(from.length==0 || to.length==0)
+  {
+  errors.push({message: 'Morate uneti datume!'});
+  }
+  if(number<0)
+  {
+  errors.push({message: 'Pogresno uneti datumi!'});
+  }
+  if(date1.getTime()-today.getTime()<0)
+  {
+  errors.push({message: "Uneli ste datume iz proslosti"});
+  }
+  var e = await Booking.find({$or:[{car: String(carid), from: {$gte: Number(date1.getTime()), $lte: Number(date2.getTime())}}, 
+  {car: String(carid), to: {$gte: Number(date1.getTime()), $lte: Number(date2.getTime())}}]}).count();
+    if(e>0)
+    {
+      errors.push({message: 'Nije raspoloziv za unete datume'});
+    }
+  
+  if(errors.length>0){
+  req.flash('upozorenje', errors);
+  }
+  var upozorenje = req.flash('upozorenje');
+  var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
+           var total = days*Number(carprice);
+      Auto.findOne({_id: carid}, function(err,car){
+             res.render('car', {days: days, total: total, from:from, to:to, upozorenje: upozorenje, marka: car.marka, model: car.model,
+            location: car.lokacija, price: carprice, img: car.slika, carid: carid});
+  })
+  })
+  router.get('/car', function(req, res, next){
+      const {carid, from ,to, carprice} = req.query;
+      var date1= new Date(from);
+      var date2 = new Date(to);
+      var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
+       var upozorenje = req.flash('upozorenje'); 
+       var total = days*Number(carprice);
+      Auto.findOne({_id: carid}, function(err,car){
+             res.render('car', {days: days, total: total, from:from, to:to, upozorenje: upozorenje, marka: car.marka, model: car.model,
+            location: car.lokacija, price: carprice, img: car.slika, carid: carid});
+        
+      });
+      
+    
+  })
+
 module.exports = router;
  

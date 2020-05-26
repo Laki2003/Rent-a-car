@@ -1,0 +1,22 @@
+
+{{>header}}
+<section class="car">
+    <h2 class="booking-h2">{{marka}} {{model}}</h2>
+   
+<img src='{{img}}'>
+{{# if upozorenje}}
+{{# each upozorenje }}
+<div class="upozorenje">
+    {{this.message}}
+</div>
+{{/each}}
+{{/if}}
+    <form class="booking-form" method='GET' action='/book-car'>
+        <input class="booking-form-input booking-date"type="date" name="from" value='{{from}}'>
+        <input class="booking-form-input booking-date" type="date" name="to" value='{{to}}'>
+        <p> Lokacija: {{location}}<br>Cena: ${{price}} <br> Broj dana: {{days}}<br> Ukupna cena: ${{total}}</p>
+        <input type="hidden" value='{{carid}}' name='carid'>
+        <input type="hidden" value='{{price}}' name='carprice'>
+        <button type='submit' class="booking-form-button">Plati</button>
+    </form>
+</section>

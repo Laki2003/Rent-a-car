@@ -460,6 +460,94 @@ height: 5%;
         
     }
 
+
+
+
+    .search{
+   
+    
+        background: black;
+     padding: 115px;
+     margin-bottom: 20px;
+    }
+    
+    .search-h2{
+        font-family: 'Bangers', cursive;
+        text-align: left;
+    color: rgb(225, 225, 225);
+    margin-bottom: 30px;
+    font-size: 35px;
+    }
+    .search-form{
+      display: block;
+      text-align: left;
+    
+    }
+    .search-form-input{
+       
+        padding: 10px;
+            text-decoration: none;
+            border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.753);
+    border-radius: 5%;
+    cursor: pointer;
+    box-shadow: none;
+        }
+        .search-form-button{
+            padding: 10px;
+            text-decoration: none;
+            border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.753);
+    border-radius: 5%;
+    cursor: pointer;
+    box-shadow: none;
+        }
+        .fa-arrow-left{
+            display: none;
+        }
+    .car-div{
+        
+        font-family: 'Bangers', cursive;
+        font-size: 50px;
+    margin: 2%;
+    width: 20%;
+    height: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    display: inline-block;
+    transition: 2s;
+    }
+    
+    
+    .car-div p{
+        font-size: 25px;
+    }
+    .booking-button{
+        padding: 10px;
+    width: 100%;
+    }
+    .car{
+        padding: 240px;
+        background-color: black;
+    text-align: center;
+    }
+    .car p {
+        font-family: 'Bangers', cursive;
+        text-align: center;
+    color: rgb(255, 255, 255);
+    margin: 30px;
+    font-size: 35px;
+    }
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width:750px)
 {
     .nav-item{
