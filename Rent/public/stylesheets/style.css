@@ -545,7 +545,17 @@ height: 5%;
     }
 
 
-
+    .profile{
+        padding: 240px;
+      }
+      .profile h1{
+        font-family: 'Bangers', cursive;
+        text-align: center;
+    color: black;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    font-size: 75px;
+      }
 
 
 

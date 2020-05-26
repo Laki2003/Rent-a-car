@@ -1,2 +1,40 @@
+{{>header}}
+<setion class="profile">
+  
+    <h1>Moj Profil</h1>
+  <h4>Sledece voznje</h4>
+  
 
-<h1>Moj Profil</h1>
+{{# if rent}}
+{{# each rent}}
+ <div class="car-div">
+                <h5 id='confirm-header'>{{this.auto.marka}} {{this.auto.model}}</h5> 
+               <h5>Od: {{datum this.booking.from}}</h5>
+               <h5>Do: {{datum this.booking.to}}</h5>
+               <p>{{this.auto.sedista}} <i class="fas fa-user-friends"></i> <i class="fas fa-fan"></i></p>
+               <img src="{{this.auto.slika}}" width="100%" height="150px">
+<input type="hidden" value="{{this.booking._id}}" id="booking-id">
+            <button class="cancel-button" type="button">Otkazi</button>
+                                         </div> 
+
+{{/each}}
+{{else}}
+<p>Nemate predstojecih putovanja</p>
+{{/if}}
+<div id="id01" class="modal">
+  <form class="modal-content" action="/users/profile/delete-rent" method='POST'>
+    <div class="container">
+      <h1>Zelite li da otkazete rentiranje</h1>
+      <p class='confirm-text'></p>
+      <p>Unesite marku i model automobila</p>
+<input type="hidden" class="input-booking-id" name="bookingid">  
+<input type="text" class="input-confirm">
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'"  class="button-window cancelbtn">Cancel</button>
+        <button type="button" class="button-window deletebtn">Otkazi</button>
+      </div>
+    </div>
+  </form>
+</div>
+</section>
+
