@@ -446,6 +446,10 @@ height: 5%;
     .login-tekst{
         color: white;
     }
+    .checkout{
+        background : url('../images/123993.jpg') no-repeat;
+    overflow-x: hidden;
+    }
     .upozorenje{
         display: block;
         text-align: center;

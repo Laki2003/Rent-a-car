@@ -178,6 +178,66 @@ router.get('/check', async function(req, res, next){
       
     
   })
+  router.get('/book-car', isLoggedIn, function(req, res, next){
+    const {carprice, from, to, carid} = req.query;
+  var date1= new Date(from);
+  var date2 = new Date(to);
+  var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
+  var errMsg = req.flash('error')[0];
+  var total = days*Number(carprice);
+  req.session.total = total;
+        res.render('book-car', {days: days, total: total, from:from, to: to, errMsg: errMsg, noError: !errMsg, carid:carid});
+  })
+  
+    router.post('/book-car', isLoggedIn, function(req, res, next){
+  
+      var stripe = require('stripe')(
+        'sk_test_80sfupXu0EUHnDz0LSPb6H9Z001b3Okeou'
+    );
+    stripe.charges.create({
+      amount:  req.session.total*100,
+      currency: "usd",
+      source: req.body.stripeToken,
+      description: "Test charge"
+    }, function(err, charge){
+  if(err){
+    req.flash('error', err.message);
+    return res.redirect('/book-car');
+  }
+  var from = new Date(req.body.from);
+  var to = new Date(req.body.to);
+  
+  var booking = new Booking({
+    user: req.user,
+     datumBukiranja: Date(),
+    from: from.getTime(),
+    to: to.getTime(),
+    car: req.body.carid,
+  
+    paymentId: charge.id
+    
+  });
+  booking.save(function(err, result){
+    var success = [];
+    success.push({message: 'Uspesno ste bukirali auto'});
+    req.flash('success', success);
+    req.session.total = null;
+    res.redirect('/');
+  })
+  
+    });
+    });
+  
+    
 
 module.exports = router;
  
+function isLoggedIn(req, res, next)
+    {
+    if(req.isAuthenticated())
+    {
+      return next();
+    }
+    req.session.oldUrl = req.url;
+    res.redirect('/users/login');
+    }

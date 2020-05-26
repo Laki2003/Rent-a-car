@@ -1,0 +1,46 @@
+
+  <body class="checkout">
+          
+         <header class="log-header"><h2><a href="/">Car Rental</a></h2></header>
+                      
+         <div class="log">
+    <h2 class="login-h2">Bukiraj auto</h2>
+    
+    <form action='/book-car' method='post' id="booking-form">
+ <input type="date" id="from" class="login-form-input" value="{{from}}" readonly = 'readonly' name="from">
+ <input type="date" id="to" class="login-form-input" value="{{to}}" readonly = 'readonly' name="to">
+   <h4> Broj dana: {{days}}  Ukupno: ${{total}}  </h4> 
+{{#if errMsg}}
+    <div id="charge-error" class="upozorenje">
+{{errMsg}}
+    </div>
+ {{/if}}
+    {{# if upozorenje }}
+ 
+    {{# each upozorenje}}
+     <div id="date-error" class="upozorenje">{{this.message}}</div>
+     {{/each}}
+     {{/if}}
+     <input type="text" id="name" class="login-form-input" placeholder="Ime" required> 
+   <input type="text" id="address" class="login-form-input" placeholder="Adresa" required>
+   <input type="text" id="card-name" class="login-form-input" placeholder="Ime na kartici" required>
+            <input type="text" id="card-number" class="login-form-input" placeholder="Broj kartice" required>
+<input type="text" id='card-expiry-month' class="login-form-input" placeholder="Mesec isteka" required>
+   <input type="text" id="card-expiry-year" class="login-form-input" placeholder="Godina isteka" required>
+            <input type="text" id="card-cvc" class="login-form-input" placeholder="CVC kod" required>
+    <input type="hidden" name="carid" value="{{carid}}">
+    <button type="submit" id="book-car-button" class="button btn-success">Bukiraj</button>
+</form>
+</div>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="/javascripts/booking.js"></script>
+         </body>
+      
+
+
+
+
+
+
+
+
