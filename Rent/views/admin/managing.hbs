@@ -1,0 +1,123 @@
+{{>header}}
+<section class="control-section">
+    <h2>Kontrolna tabla</h2>
+    <div class="control-navigation">
+        <ul class="ctrl-navigation-list">
+            <li class="ctrl-navigation-list-item active" id="booking-button">Bukiranja</li>
+            <li class="ctrl-navigation-list-item" id="car-button">Automobili</li>
+            <li class="ctrl-navigation-list-item" id="location-button">Lokacije</li>
+        </ul>
+    </div>
+
+
+    <div class="control-div">
+        <div class="control-sub-navigation">
+            <ul class="ctrl-sub-navigation-list">
+                <li class="ctrl-sub-navigation-item active" id="add-car">Dodaj Automobil</li>
+                <li class="ctrl-sub-navigation-item" id="other-cars">Ostali Automobili</li>
+                <li class="ctrl-sub-navigation-item" id="add-location">Dodaj Lokaciju</li>
+                <li class="ctrl-sub-navigation-item" id="other-locations">Ostale Lokacije</li>
+            </ul>
+        </div>
+        {{# if success}}
+        <div class="success">
+            {{# each success}}
+            {{this.message}}
+            {{/each}}
+        </div>
+        {{/if}}
+        {{#if error}}
+        {{# each error}}
+        <div class="upozorenje">
+            {{this.message}}
+        </div>
+        {{/each}}
+        {{/if}}
+        <h4 class="control-div-header">Bukiranja</h4>
+
+        <form class="control-form" method="POST" action="/users/managing">
+            <input type="text" class="control-form-input" name="email" id="first" placeholder="Email">
+            <input type="text" class="control-form-input" name="marka" id="second" placeholder="Marka">
+            <select id="motori" name="motori">
+                <opton value=''>Svi motori</opton>
+                <option value="dizel">Dizel</option>
+                <option value="benzin">Benzin</option>
+                <option value="elektricni">Elektricni</option>
+            </select>
+            <input type="text" class="control-form-input" name="model" id="third" placeholder="Model">
+            <label name="klima" display="none">Klima: </label>
+            <input name="klima" value="true" checked type="checkbox" display="none" id="klima">
+            <input type="date" class="control-form-input" name="from" id="fourth" placeholder="Od">
+            <input type="date" class="control-form-input" name="to" id="fifth" placeholder="Do">
+            <input type="text" name='lokacija' class="control-form-input" id="location-input" placeholder="Loaction">
+                        <button type="submit" class="control-form-button"><span><i class="fas fa-search"></i></span></button>
+        </form>
+    </div>
+
+   
+                 {{# if cars}}
+            {{# each cars}}
+           
+ <div class="car-div">
+                <h5 id='confirm-header'>{{this.marka}} {{this.model}}</h5> 
+               <p>{{this.sedista}} <i class="fas fa-user-friends"></i> <i class="fas fa-fan"></i></p>
+               <img src="{{this.slika}}" width="100%" height="150px">
+<input type="hidden" value='{{this._id}}' id="car-id">
+            <button class="trash trash-car" type="button"><span><i
+                                class="far fa-trash-alt"></i></span></button>
+                                         </div> 
+            
+            {{/each}}
+
+            {{/if}}
+
+     
+
+                {{# if bookings}}
+                {{# each bookings}}
+ <div class="car-div">
+                <h5>{{this.auto.marka}} {{this.auto.model}}</h5> 
+               <h5>Od: {{datum this.booking.from}}</h5>
+               <h5>Do: {{datum this.booking.to}}</h5>
+               <p>{{this.auto.sedista}} <i class="fas fa-user-friends"></i> <i class="fas fa-fan"></i></p>
+               <img src="{{this.auto.slika}}" width="100%" height="150px">
+<input type="hidden" value="{{this.booking._id}}" id="booking-id">
+<input type="hidden" value='{{this.booking.paymentId}}' id='confirm-header'>
+            <button class="trash trash-booking" type="button"><span><i
+                                class="far fa-trash-alt"></i></span></button>
+                                         </div> 
+                {{/each}}
+                {{/if}}
+                {{# if lokacije}}
+                {{# each lokacije}}
+                <li class="search-card">
+                    <p class="search-card-item"> Grad: {{this.grad}} <br>
+                        Zemlja: {{this.zemlja}} <br>
+                    </p>
+                    <input type="hidden" value="{{this.grad}}" id='confirm-header'>
+                    <input type="hidden" value="{{this._id}}" id="location-id">
+                    <button type="button" class="trash trash-location"><span><i
+                                class="far fa-trash-alt"></i></span></button>
+                </li>
+                {{/each}}
+                {{/if}}
+            </ul>
+    
+    
+</section>
+<div id="id01" class="modal">
+        <form class="modal-content" action="/users/managing/delete-car" method='POST'>
+            <div class="container">
+                <h1 class="container-header">Zelite li da izbrisete auto</h1>
+                <p class='confirm-text'></p>
+                <p class="zahtev">Unesite marku i model automobila</p>
+                <input type="hidden" class="input-item-id" name="itemid">
+                <input type="text" class="input-confirm">
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="button-window cancelbtn">Cancel</button>
+                    <button type="button" class="button-window deletebtn">Izbrisi</button>
+                </div>
+            </div>
+        </form>
+    </div>
