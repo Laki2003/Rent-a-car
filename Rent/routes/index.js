@@ -229,7 +229,9 @@ router.get('/check', async function(req, res, next){
     });
   
     
-
+    router.get('/aboutus', function(req, res, next){
+      res.render('about_us');
+    })
 module.exports = router;
  
 function isLoggedIn(req, res, next)

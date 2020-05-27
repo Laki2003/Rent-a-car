@@ -90,3 +90,30 @@ $("#location-button").click(function(){
   
     }
 });
+
+$('#add-location').click(function(){
+    $('.fa-search').attr('class', 'fas fa-plus');
+$('.control-div-header').html("Dodaj lokaciju");
+$('.control-form').attr({"method": 'POST', "action":'/users/managing/post-locations', "id":'add-locations'});
+});
+$('#other-locations').click(function(){
+$('.fa-plus').attr('class', 'fas fa-search');
+$('.control-div-header').html('Ostale lokacije');
+$('.control-form').attr({"id": "location-search", "method":"GET", "action":'/users/managing/search-locations'});
+});
+
+$('#other-cars').click(function(){
+$('.fa-plus').attr('class', 'fas fa-search');
+$('.control-div-header').html('Ostali automobili');
+$('.control-form').attr({"id": "car-search", "method":"GET", "action":'/users/managing/search-cars'});
+$("#fourth").attr({"placeholder":"Cena od", "name": 'cenaod', 'type':'number'});
+$("#fifth").attr({"placeholder": "Cena do", "name": 'cenado', "type":"number"});
+
+});
+$('#add-car').click(function(){
+$('.control-form').attr({"method": 'POST', "action":'/users/managing/post-cars', "id": "add-cars"});
+$('.control-div-header').html('Dodaj automobil');
+$('.fa-search').attr('class', 'fas fa-plus');
+$("#fourth").attr({"placeholder":"Cena", "name": 'cena', 'type':'number'});
+$("#fifth").attr({"placeholder": "URL Adresa slike", "name": 'img', "type":"text"});
+});

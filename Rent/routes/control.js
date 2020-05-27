@@ -101,3 +101,107 @@ router.get('/search-bookings', allowAdmins, function(req,res, next){
   })
   
 });  
+
+router.get('/search-cars', allowAdmins, function(req, res, next){
+  const {model, marka, cenado, cenaod, sedista, motori, lokacija, klima} = req.query;
+  price1 = Number(cenaod);
+  price2 = Number(cenado);
+  sediste = Number(sedista);
+  if(!cenaod)
+  {
+    price1= 0;
+  }
+  if(!cenado)
+  {
+    price2 = 1000000;
+  }
+  if (!sedista)
+  {
+    sediste = 1;
+  }
+  mongo.connect(url, function(err, db){
+    var collection = db.db('test').collection('autos');
+    var resultArray = [];
+    assert.equal(null, err);
+    var cars;
+    if(model.length==0 && marka.length==0 && lokacija.length == 0)
+    {
+       cars = collection.find({motor: motori, klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)}});
+    }
+    else if(model.length==0 && lokacija.length == 0)
+    {
+      cars = collection.find({motor: motori,klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)},marka: marka});
+    }
+    else if (model.length == 0 && marka.length == 0)
+    {
+      cars = collection.find({motor: motori, lokacija: lokacija, klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)}});
+    }
+    else if (marka.length == 0 && lokacija.length == 0)
+    {
+      cars = collection.find({motor: motori,  klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)},
+    model: model});
+    }
+    else if(marka.length == 0)
+    {
+      cars = collection.find({motor: motori,  klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)},
+      model: model, lokacija: lokacija});
+    
+    }
+  else if(lokacija.length == 0)
+  {
+    cars = collection.find({motor: motori,  klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)},
+    model: model, marka: marka});
+  
+  }
+  else if(model.length == 0)
+  {
+    cars = collection.find({  motor: motori,  klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)},
+    lokacija: lokacija, marka: marka});
+  
+  }
+  else{
+    cars = collection.find({  motor: motori,  klima: Boolean(klima), cena: {$gte: Number(price1), $lte: Number(price2)}, sedista: {$gte: Number(sediste)},
+    lokacija: lokacija, marka: marka, model: model});
+  
+  }
+  cars.forEach(function(doc, err){
+    assert.equal(null, err);
+    resultArray.push(doc);
+  }, function(){
+    db.close();
+    res.render('admin/managing', {success: false, error: false, bookings: false, lokacije: false, cars: resultArray});
+  })
+  })
+  
+  });
+
+  router.post('/post-cars', allowAdmins, function(req, res, next){
+    const {lokacija, marka, klima, model, cena, sedista, motori, img} = req.body;
+  let error = [];
+  let success = [];
+    if(!lokacija || !marka || !cena || !model || !sedista || !motori || !img)
+  {
+  error.push({message: 'Popunite sva polja'});
+  req.flash('neuspesno', error);
+    res.redirect('/users/managing');
+  }
+  else{
+    var newAuto = new Auto();
+    newAuto.lokacija = lokacija;
+    newAuto.marka = marka;
+    newAuto.klima = klima;
+    newAuto.model = model;
+    newAuto.cena = cena;
+    newAuto.sedista = sedista;
+    newAuto.motor = motori;
+    newAuto.slika = img;
+  newAuto.save(function(err, auto){
+    if (err) return console.error(err);
+    console.log(auto.model + auto.marka + " saved to car collection.");
+  
+  });  
+  success.push({message:"Uspesno ste dodali novi automobil"});
+  req.flash('uspesno', success);
+  res.redirect('/users/managing');
+  }
+    });
