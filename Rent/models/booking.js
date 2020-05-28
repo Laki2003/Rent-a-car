@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var bookingSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'Korisnik'},
-    datumBukiranja: {type: Date, required: true},
+    datumBukiranja: {type: Number, required: true},
     from: {type: Number, required: true},
     to: {type:Number, required: true},
     car: {type: String},

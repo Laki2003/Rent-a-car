@@ -15,14 +15,23 @@ var MongoStore = require('connect-mongo')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var controlRouter = require('./routes/control');
+var profileRouter = require('./routes/profile');
 var app = express();
+const PORT = process.env.PORT || 3000;
 const db = require('./config/keys').MongoURI;
-mongoose.connect(db, {useNewUrlParser: true}).then(()=> console.log('Connected')).catch(err=>console.log(err));
+mongoose.connect(db || process.env.MONGODB_URI, {useNewUrlParser: true}).then(()=> console.log('Connected')).catch(err=>console.log(err));
 require('./config/passport');
 
 // view engine setup
-app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs', helpers: {
+  datum : function(time)
+  {
+    return new Date(time).toDateString();
+  }
+}}));
 app.set('view engine', '.hbs');
+var hbs = expressHbs.create({});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -48,6 +57,8 @@ app.use(function(req, res, next){
   res.locals.session = req.session;
   next();
 })
+app.use('/users/profile', profileRouter);
+app.use('/users/managing', controlRouter);
 app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
@@ -67,7 +78,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
+if(process.env.NODE_ENV == 'production'){
+  
+}
+app.listen(PORT, ()=>{
+  
+});
 module.exports = app;

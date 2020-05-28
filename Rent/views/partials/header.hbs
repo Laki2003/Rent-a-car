@@ -8,11 +8,11 @@
                           {{/if}}
                        <li class="nav-item"><button class="nav-button" id="log-in" onclick="location.href='/users/profile';" >Moj Profil</button></li>
                         <li class="nav-item"><button class="nav-button" id="register" onclick="location.href='/users/logout';">Odjavi se</button></li>
-        <li class="nav-item"><a href="about_us.html">About us</a></li>
+        <li class="nav-item"><a href="/aboutus">About us</a></li>
                         {{else}}
                          <li class="nav-item"><button class="nav-button" id="log-in" onclick="location.href='/users/login';">Prijava</button></li>
                         <li class="nav-item"><button class="nav-button" id="register" onclick="location.href='/users/register';">Registracija</button></li>
-        <li class="nav-item"><a href="about_us.html">About us</a></li>
+        <li class="nav-item"><a href="/aboutus">About us</a></li>
                         {{/if}}
                                             </section>
                    
@@ -22,17 +22,17 @@
                             <div class="bar3"></div>
                             </div>
                         </li>     
-                        <li class="nav-header"><h3 class="nav-header"><a href="index.html">Car Rental</a></h3></li>
+                        <li class="nav-header"><h3 class="nav-header"><a href="/">Car Rental</a></h3></li>
                    {{# if login}}
 
-<li class="mobile-nav-item" onclick ="location.href = 'about_us.html';">About us</li>
+<li class="mobile-nav-item" onclick ="location.href = '/aboutus';">About us</li>
                      {{# if admin}}
                             <li class="mobile-nav-item" onclick="location.href='/users/managing';">Kontrol</li>
                             {{/if}}
                         <li class="mobile-nav-item" onclick = "location.href = '/users/profile';">Moj Profil</li>
                         <li class="mobile-nav-item" onclick="location.href='/users/logout';">Odjavi se</li>
                    {{else}}
-                   <li class="mobile-nav-item" onclick ="location.href = 'about_us.html';">About us</li>
+                   <li class="mobile-nav-item" onclick ="location.href = '/aboutus';">About us</li>
                         <li class="mobile-nav-item" onclick = "location.href = '/users/login';">Prijava</li>
                         <li class="mobile-nav-item" onclick="location.href='/users/register';">Registracija</li>
                    {{/if}}

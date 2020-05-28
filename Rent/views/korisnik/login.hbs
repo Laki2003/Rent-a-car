@@ -1,6 +1,6 @@
         <body class="log-in">
           
-         <header class="log-header"><h2><a href="index.html">Car Rental</a></h2></header>
+         <header class="log-header"><h2><a href="/">Car Rental</a></h2></header>
                       
          <div class="log">
     <h2 class="login-h2">Prijava</h2>
@@ -11,13 +11,13 @@
         {{/each}}
     </div>
     {{/if}}
-    <form class="login-form" action = "/users/login" method="POST">
+    <form id='booking-form' class='login-form' action = "/users/login" method="POST">
 <input type="email" id="email" name="email"class="login-form-input" placeholder="Email">
 <input type="password" class="login-form-input" id="password" name="password" placeholder="Password">
 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 <button class="login-form-button" type="submit">Prijavi se</button>
 </form>
-<p class="login-tekst">Nemate nalog? <a href="register.html">Registruj se</a></p>
+<p class="login-tekst">Nemate nalog? <a href="/users/register">Registruj se</a></p>
          </div>
          </body>
       

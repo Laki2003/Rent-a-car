@@ -928,7 +928,7 @@ hr {
 .profile{
     padding: 240px;
   }
-  .profile h1{
+  .profile h2{
     font-family: 'Bangers', cursive;
     text-align: center;
 color: black;
@@ -953,10 +953,10 @@ font-size: 75px;
     }
     .car-div{
     text-align: center;
-    width: 70%;
+    width: 80%;
     margin-left: 10%;
     margin-right: 5%;
-  
+  display: inline-block;
     }
     .booking-form-button{
         width: 50%;

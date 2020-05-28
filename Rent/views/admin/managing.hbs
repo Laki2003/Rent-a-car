@@ -53,12 +53,13 @@
                         <button type="submit" class="control-form-button"><span><i class="fas fa-search"></i></span></button>
         </form>
     </div>
-
-   
+</section>
+   <section class="search-cars">
                  {{# if cars}}
+          
             {{# each cars}}
-           
- <div class="car-div">
+          
+           <div class="car-div">
                 <h5 id='confirm-header'>{{this.marka}} {{this.model}}</h5> 
                <p>{{this.sedista}} <i class="fas fa-user-friends"></i> <i class="fas fa-fan"></i></p>
                <img src="{{this.slika}}" width="100%" height="150px">
@@ -68,12 +69,12 @@
                                          </div> 
             
             {{/each}}
-
             {{/if}}
 
      
 
                 {{# if bookings}}
+               
                 {{# each bookings}}
  <div class="car-div">
                 <h5>{{this.auto.marka}} {{this.auto.model}}</h5> 
@@ -103,8 +104,8 @@
                 {{/if}}
             </ul>
     
-    
-</section>
+</section>    
+
 <div id="id01" class="modal">
         <form class="modal-content" action="/users/managing/delete-car" method='POST'>
             <div class="container">

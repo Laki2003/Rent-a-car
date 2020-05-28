@@ -67,7 +67,6 @@ Korisnik.findOne({$or: [{'email': email}, {'username': username}]}, function(err
             return done(err);
         }
         req.session.admin = newKorisnik.admin;
-
         return done(null, newKorisnik);
     });
 });

@@ -6,11 +6,9 @@ var mongoose = require('mongoose');
 var Booking= require('../models/booking');
 var Auto = require('../models/auto');
 var Lokacija = require('../models/lokacija');
-
-
  var url = require('../config/keys').MongoURI;
-
- router.get('/', async function(req, res, next) {
+ 
+router.get('/', async function(req, res, next) {
   var Greska = req.flash('greska');
   var success = req.flash('success');
 var lokacija = await Lokacija.find().count();
@@ -125,121 +123,118 @@ db.close();
   })
 }
 })
-
 router.get('/check', async function(req, res, next){
-  const {from, to, carid, carprice} = req.query;
-  var date1 = new Date(from);
-  var date2 = new Date(to);
-  var number = date2.getTime() - date1.getTime();
-  var today = new Date();
-  let errors = [];
-  if(from.length==0 || to.length==0)
+const {from, to, carid, carprice} = req.query;
+var date1 = new Date(from);
+var date2 = new Date(to);
+var number = date2.getTime() - date1.getTime();
+var today = new Date();
+let errors = [];
+if(from.length==0 || to.length==0)
+{
+errors.push({message: 'Morate uneti datume!'});
+}
+if(number<0)
+{
+errors.push({message: 'Pogresno uneti datumi!'});
+}
+if(date1.getTime()-today.getTime()<0)
+{
+errors.push({message: "Uneli ste datume iz proslosti"});
+}
+var e = await Booking.find({$or:[{car: String(carid), from: {$gte: Number(date1.getTime()), $lte: Number(date2.getTime())}}, 
+{car: String(carid), to: {$gte: Number(date1.getTime()), $lte: Number(date2.getTime())}}]}).count();
+  if(e>0)
   {
-  errors.push({message: 'Morate uneti datume!'});
+    errors.push({message: 'Nije raspoloziv za unete datume'});
   }
-  if(number<0)
-  {
-  errors.push({message: 'Pogresno uneti datumi!'});
-  }
-  if(date1.getTime()-today.getTime()<0)
-  {
-  errors.push({message: "Uneli ste datume iz proslosti"});
-  }
-  var e = await Booking.find({$or:[{car: String(carid), from: {$gte: Number(date1.getTime()), $lte: Number(date2.getTime())}}, 
-  {car: String(carid), to: {$gte: Number(date1.getTime()), $lte: Number(date2.getTime())}}]}).count();
-    if(e>0)
-    {
-      errors.push({message: 'Nije raspoloziv za unete datume'});
-    }
-  
-  if(errors.length>0){
-  req.flash('upozorenje', errors);
-  }
-  var upozorenje = req.flash('upozorenje');
-  var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
-           var total = days*Number(carprice);
-      Auto.findOne({_id: carid}, function(err,car){
-             res.render('car', {days: days, total: total, from:from, to:to, upozorenje: upozorenje, marka: car.marka, model: car.model,
-            location: car.lokacija, price: carprice, img: car.slika, carid: carid});
-  })
-  })
-  router.get('/car', function(req, res, next){
-      const {carid, from ,to, carprice} = req.query;
-      var date1= new Date(from);
-      var date2 = new Date(to);
-      var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
-       var upozorenje = req.flash('upozorenje'); 
-       var total = days*Number(carprice);
-      Auto.findOne({_id: carid}, function(err,car){
-             res.render('car', {days: days, total: total, from:from, to:to, upozorenje: upozorenje, marka: car.marka, model: car.model,
-            location: car.lokacija, price: carprice, img: car.slika, carid: carid});
-        
-      });
+
+if(errors.length>0){
+req.flash('upozorenje', errors);
+}
+var upozorenje = req.flash('upozorenje');
+var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
+         var total = days*Number(carprice);
+    Auto.findOne({_id: carid}, function(err,car){
+           res.render('car', {days: days, total: total, from:from, to:to, upozorenje: upozorenje, marka: car.marka, model: car.model,
+          location: car.lokacija, price: carprice, img: car.slika, carid: carid});
+})
+})
+router.get('/car', function(req, res, next){
+    const {carid, from ,to, carprice} = req.query;
+    var date1= new Date(from);
+    var date2 = new Date(to);
+    var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
+     var upozorenje = req.flash('upozorenje'); 
+     var total = days*Number(carprice);
+    Auto.findOne({_id: carid}, function(err,car){
+           res.render('car', {days: days, total: total, from:from, to:to, upozorenje: upozorenje, marka: car.marka, model: car.model,
+          location: car.lokacija, price: carprice, img: car.slika, carid: carid});
       
+    });
     
-  })
+  
+})
   router.get('/book-car', isLoggedIn, function(req, res, next){
-    const {carprice, from, to, carid} = req.query;
-  var date1= new Date(from);
-  var date2 = new Date(to);
-  var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
-  var errMsg = req.flash('error')[0];
-  var total = days*Number(carprice);
-  req.session.total = total;
-        res.render('book-car', {days: days, total: total, from:from, to: to, errMsg: errMsg, noError: !errMsg, carid:carid});
-  })
+  const {carprice, from, to, carid} = req.query;
+var date1= new Date(from);
+var date2 = new Date(to);
+var days = (date2.getTime() - date1.getTime())/(1000*3600*24);
+var errMsg = req.flash('error')[0];
+var total = days*Number(carprice);
+req.session.total = total;
+      res.render('book-car', {days: days, total: total, from:from, to: to, errMsg: errMsg, noError: !errMsg, carid:carid});
+})
+
+  router.post('/book-car', isLoggedIn, function(req, res, next){
+
+    var stripe = require('stripe')(
+      'sk_test_80sfupXu0EUHnDz0LSPb6H9Z001b3Okeou'
+  );
+  stripe.charges.create({
+    amount:  req.session.total*100,
+    currency: "usd",
+    source: req.body.stripeToken,
+    description: "Test charge"
+  }, function(err, charge){
+if(err){
+  req.flash('error', err.message);
+  return res.redirect('/book-car');
+}
+var from = new Date(req.body.from);
+var to = new Date(req.body.to);
+var today = new Date();
+var booking = new Booking({
+  user: req.user,
+   datumBukiranja: today.getTime(),
+  from: from.getTime(),
+  to: to.getTime(),
+  car: req.body.carid,
+
+  paymentId: charge.id
   
-    router.post('/book-car', isLoggedIn, function(req, res, next){
-  
-      var stripe = require('stripe')(
-        'sk_test_80sfupXu0EUHnDz0LSPb6H9Z001b3Okeou'
-    );
-    stripe.charges.create({
-      amount:  req.session.total*100,
-      currency: "usd",
-      source: req.body.stripeToken,
-      description: "Test charge"
-    }, function(err, charge){
-  if(err){
-    req.flash('error', err.message);
-    return res.redirect('/book-car');
-  }
-  var from = new Date(req.body.from);
-  var to = new Date(req.body.to);
-  
-  var booking = new Booking({
-    user: req.user,
-     datumBukiranja: Date(),
-    from: from.getTime(),
-    to: to.getTime(),
-    car: req.body.carid,
-  
-    paymentId: charge.id
-    
+});
+booking.save(function(err, result){
+  var success = [];
+  success.push({message: 'Uspesno ste bukirali auto'});
+  req.flash('success', success);
+  req.session.total = null;
+  res.redirect('/');
+})
+
   });
-  booking.save(function(err, result){
-    var success = [];
-    success.push({message: 'Uspesno ste bukirali auto'});
-    req.flash('success', success);
-    req.session.total = null;
-    res.redirect('/');
-  })
-  
-    });
-    });
-  
-    
-    router.get('/aboutus', function(req, res, next){
-      res.render('about_us');
-    })
+  });
+ router.get('/aboutus', function(req, res, next){
+   res.render('about_us');
+ })
 module.exports = router;
  
 function isLoggedIn(req, res, next)
-    {
-    if(req.isAuthenticated())
-    {
-      return next();
-    }
-    req.session.oldUrl = req.url;
-    res.redirect('/users/login');
-    }
+{
+if(req.isAuthenticated())
+{
+  return next();
+}
+req.session.oldUrl = req.url;
+res.redirect('/users/login');
+}
